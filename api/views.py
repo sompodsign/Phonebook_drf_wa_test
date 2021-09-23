@@ -7,7 +7,12 @@ from .models import Contact
 
 # Create your views here.
 @api_view(['GET'])
-def get_contact(request, id):
-    qs = Contact.objects.get(id)
-    serializer = ContactSerializer(qs, many=True)
+def get_contact(request, pk):
+    contact_obj = Contact.objects.get(id=pk)
+    serializer = ContactSerializer(contact_obj, many=False)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def create_contact(request):
+    pass
