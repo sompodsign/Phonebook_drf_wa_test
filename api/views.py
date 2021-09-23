@@ -6,8 +6,8 @@ from .models import Contact
 
 
 # Create your views here.
-# @api_view(['GET', 'POST'])
-def get_contacts(request):
-    qs = Contact.objects.all().order_by('contact_name')
+@api_view(['GET'])
+def get_contact(request, id):
+    qs = Contact.objects.get(id)
     serializer = ContactSerializer(qs, many=True)
     return Response(serializer.data)
